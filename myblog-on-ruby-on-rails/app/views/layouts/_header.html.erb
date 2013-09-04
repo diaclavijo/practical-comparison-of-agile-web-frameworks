@@ -1,0 +1,27 @@
+<div id='header'>
+  <h1> <%= link_to 'MyBlog', search_path  %></h1>
+  <%= form_tag search_path, :method => 'get' do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil %>
+    </p>
+  <% end %>
+  <ul>
+    <% if signed_in?%>
+      <li> Hello <%= current_user.name %> <%= link_to 'Sign out', logout_path, :method => 'delete' %></li>
+      <li> <%= link_to 'Profile', user_path(current_user) %></li>
+      <li> <%= link_to 'Update profile', edit_user_path(current_user) %></li>
+      <% if current_user.blog %>
+        <li> <%= link_to 'New post', new_post_path() %> </li>
+        <li> <%= link_to 'My blog', user_posts_path(current_user.name) %></li>
+        <li> <%= link_to 'Edit blog information', edit_blog_path('blog') %></li>
+      <% else %>
+        <li> You haven't created your blog, </li>
+        <li><%= link_to 'Create the blog', new_blog_path %> </li>
+      <% end %>
+    <% else %>
+      <li><%= link_to 'Signin', login_path %></li>
+      <li><%= link_to 'Signup', signup_path %></li>
+    <% end %>
+  </ul>
+</div>

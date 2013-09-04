@@ -1,0 +1,4 @@
+To start the application server on localhost type the same as in every rails app:
+
+rails server
+

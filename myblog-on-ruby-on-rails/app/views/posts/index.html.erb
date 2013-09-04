@@ -1,0 +1,11 @@
+<% if defined?(@blog) then
+    content_for :title, "#{@blog.title} - "
+  end %>
+<% if defined?(@blog) %>
+  <h1> <%= @blog.title %></h1>
+  <h3> <%= @blog.description %> </h3>
+<% end %>
+<%= render @posts %>
+<% @page_count.times {|time| %>
+    <%= link_to '-'+(time+1).to_s+'-' , root_path(:offset=>time*3 , :search => params['search']) %>
+ <% } %>

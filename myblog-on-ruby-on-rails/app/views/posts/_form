@@ -1,0 +1,21 @@
+<%= form_for @post, :as => :post, :url => post_path(@post.blog.user.name,@post), :method => :put do |f| %>
+  <% if @post.errors.any? %>
+    <div class="error_messages">
+      <h2> Form is invalid</h2>
+      <ul>
+        <% for message in @post.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %> 
+  </p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </p>
+  <p class="button"><%= f.submit %></p>
+<% end %>

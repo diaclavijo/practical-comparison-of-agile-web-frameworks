@@ -1,0 +1,30 @@
+<h1> Edit page </h1><%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2> Form is invalid</h2>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %> 
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %> 
+  </p>
+  <p>
+    <%= f.label :website %><br />
+    <%= f.text_field :website %>
+  </p>  <p>
+    <%= f.label :avatar %><br />
+    <%= f.file_field :avatar %>
+  </p><%= link_to 'Change password', new_password_user_path(@user) %>
+  <p class="button"><%= f.submit %></p>
+<% end %>
+<%= form_tag user_path(@user), :method => :delete    do %>
+  <%= submit_tag "Delete account", :confirm => 'Do you really want to delete your account?' %>
+<% end %>

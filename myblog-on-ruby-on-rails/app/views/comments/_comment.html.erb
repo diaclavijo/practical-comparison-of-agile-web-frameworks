@@ -1,0 +1,39 @@
+<% if comment.user_id %>
+  <p>
+    <b>User:</b>
+    <%= comment.user.name %>
+  </p>
+  <p>
+    <b>Website:</b>
+    <%= comment.user.website %>
+  </p>
+  <p>
+    <b>Email:</b>
+    <%= comment.user.email %>
+  </p>  
+<% else %>
+  <p>
+    <b>User:</b>
+    <%= comment.author %>
+  </p>
+  <p>
+    <b>Website:</b>
+    <%= comment.website %>
+  </p>
+  <p>
+    <b>Email:</b>
+    <%= comment.email %>
+  </p>  
+<% end %>
+<p>
+  <b>Body:</b>
+  <%= comment.body %>
+</p>
+<% if signed_in? && current_user?(@post.blog.user) %>
+  <p> Offensive Comment? Do you want to delete it?
+      <%= link_to 'Delete this comment',
+              post_comment_path(@post,comment), 
+              :confirm => 'Are you sure?',
+              :method => :delete %> 
+  </p>
+<% end %>

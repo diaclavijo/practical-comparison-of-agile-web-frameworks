@@ -1,0 +1,6 @@
+<h1> Last entries in MyBlog </h1>
+<%= render :template => "posts/index" %>
+<% if current_user.blog %>
+  <h1> Your blog : <%= @user.blog.title %> </h1>
+  <%= render :partial => "posts/post", :collection => @user.blog.posts %>
+<% end %>

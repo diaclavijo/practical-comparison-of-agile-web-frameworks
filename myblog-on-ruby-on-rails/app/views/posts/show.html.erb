@@ -1,0 +1,6 @@
+<%= render @post %>
+<%= render @post.comments %>
+<h2>Add a comment:</h2>
+<% unless defined?(@comment) then @comment = @post.comments.build end %>
+<%= render :partial => "comments/form",
+          :locals => {:comment => @comment, :post => @post} %>

@@ -1,0 +1,21 @@
+<%= link_to post_path(post.blog.user.name,post) do %>
+  <h2> <%= post.title %></h2>
+<% end %>
+<%= link_to user_posts_path(post.blog.user.name) do %>
+  <p>by <%= post.blog.user.name %></p>
+<% end %>
+created at <%= post.created_at %>
+<% if signed_in? && ( post.blog.user_id == current_user.id )%>
+  <ul class='post-options'>
+    <li> <%= link_to 'Update this post',
+              edit_post_path(post.blog.user.name, post) %>
+              </li>
+    <li> <%= link_to 'Delete this post',
+              delete_post_path(post.blog.user.name, post), 
+              :confirm => 'Are you sure?',
+              :method => :delete %> </li>
+  </ul>
+<% end %>
+  <p>   <%= image_tag post.blog.user.avatar.url(:thumb) %> </p>
+  <p> <%= post.body %></p>
+  <p> <%= post.comments.size %> comments</p>
