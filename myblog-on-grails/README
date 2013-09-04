@@ -1,0 +1,9 @@
+Install Grails. You can follow official instruction here:
+
+http://grails.org/installation
+
+Afterwards, inside this directory, execute:
+
+grails run-app
+
+Myblog is running and can be visited in the address specified in the output.
