@@ -1,0 +1,8 @@
+It was developed with Django 1.5.1 and Python 2.7.3.
+
+To star myblog on Django execute:
+
+python manage.py runserver
+
+You can visit the web app at the address specified by the output.
+

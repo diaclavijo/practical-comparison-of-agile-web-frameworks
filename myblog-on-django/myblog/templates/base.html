@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css" />
+    <title>{% block title %}Myblog{% endblock %}</title>
+</head>
+
+<body>
+    <div id="sidebar">
+        {% block sidebar %}
+
+        <div id="search">
+            <form method="get" action="/">
+                <input id="id_search" maxlength="30" name="search" type="text" />
+                <input type="submit" value="Search" />
+            </form>
+        </div>
+        
+        <ul>
+            {% if user.is_authenticated %}
+                <li>Hello {{user}}</li>
+                <li><a href="/">Home</a></li>
+                {% if user.blog %}
+                    <li><a href="{% url 'blog' user.username %}">My blog</a> </li>
+                    <li><a href="{% url 'post_create' %}">Publish a post </a></li>
+                {% else %}
+                    <li><a href="{% url 'blog_create' %}">You do not have a blog. Why don't you create one?</a> </li>
+                {% endif %}
+                <li><a href="{% url 'settings' %}">Settings</a></li>
+                <li><a href="{% url 'logout' %}">Log out</a></li>
+            {% else %}
+                <li><a href="/">Home</a></li>
+                <li><a href="{% url 'login' %}">Log in</a></li>
+                <li><a href="{% url 'signup' %}">Sign up</a></li>
+            {% endif %}
+        </ul>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        
+        
+        {% endblock %}
+    </div>
+    {% block secondbar %}
+    {% endblock %}
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

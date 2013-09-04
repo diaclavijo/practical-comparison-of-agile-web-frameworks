@@ -1,0 +1,40 @@
+{% extends base_template %}
+
+{% block content %}
+
+{% if form.subject.errors %}
+    <ol>
+    {% for error in form.subject.errors %}
+        <li><strong>{{ error|escape }}</strong></li>
+    {% endfor %}
+    </ol>
+{% endif %}
+
+<form method="post" action=
+{% if user.blog %}
+    "{% url 'blog_update' %}"
+{% else %}
+    "{% url 'blog_create' %}"
+{% endif %}
+enctype="multipart/form-data">
+{% csrf_token %}
+
+{{ form.as_p }}
+
+<input type="submit" value=
+    {% if user.blog %}
+        "Update your blog"
+    {% else %}
+        "Create your blog"
+    {% endif %}
+/>
+
+</form>
+{% if user.blog %}
+<form method="post" action="{% url 'blog_delete' %}" >
+    {% csrf_token %}
+    <input type="submit" value="Delete Blog" > 
+</form>
+{% endif %}
+{% endblock %}
+

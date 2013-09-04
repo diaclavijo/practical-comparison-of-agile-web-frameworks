@@ -1,0 +1,45 @@
+{% extends "base_settings.html" %}
+{% block content %}
+{% if form.subject.errors %}
+    <ol>
+    {% for error in form.subject.errors %}
+        <li><strong>{{ error|escape }}</strong></li>
+    {% endfor %}
+    </ol>
+{% endif %}
+<form method="post" action="{% url 'settings' %}" enctype="multipart/form-data">
+{% csrf_token %}
+{{ form.non_field_errors }}
+<div class="fieldWrapper">
+  <p>
+    {{ form.username.errors }}
+    {{ form.username.label_tag }} : {{ form.username }}
+  </p>
+</div>
+<div class="fieldWrapper">
+  <p>
+    {{ form.email.errors }}
+    {{ form.email.label_tag }} : {{ form.email }}
+  </p>
+</div>
+<div class="fieldWrapper">
+  <p>
+    {{ form.website.errors }}
+    {{ form.website.label_tag }} : {{ form.website }}
+  </p>
+</div>
+<div class="fieldWrapper">
+  <p>
+    {{ form.avatar.errors }}
+    {{ form.avatar.label_tag }} :
+    Currently: <img src="/media/{{ form.avatar.value }}" style="width: 100px; height: 100px"/>  <br />
+    Change: <input id="id_avatar" name="avatar" type="file" />
+  </p>
+</div>
+<input type="submit" value="Update your profile" />
+</form>
+<form method="post" action="{% url 'user_delete' %}" >
+    {% csrf_token %}
+    <input type="submit" value="Delete account" >
+</form>
+{% endblock %}

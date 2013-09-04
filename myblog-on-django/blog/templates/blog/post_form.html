@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if form.subject.errors %}
+    <ol>
+    {% for error in form.subject.errors %}
+        <li><strong>{{ error|escape }}</strong></li>
+    {% endfor %}
+    </ol>
+{% endif %}
+{{ champu }} 
+<form method="post" action=
+{% if post.title %}
+    "{% url 'post_update' user.username post.slug %}"
+{% else %}
+    "{% url 'post_create' %}"
+{% endif %}
+enctype="multipart/form-data">
+{% csrf_token %}
+
+{{ form.as_p }}
+
+<input type="submit" value=
+    {% if post.title %}
+        "Update this post"
+    {% else %}
+        "Create the post"
+    {% endif %}
+/>
+
+</form>
+{% if post.title and user == post.blog.user%}
+<form method="post" action="{% url 'post_delete' post.blog.user post.slug %}" >
+    {% csrf_token %}
+    <input type="submit" value="Delete Post" > 
+</form>
+{% endif %}
+{% endblock %}
+

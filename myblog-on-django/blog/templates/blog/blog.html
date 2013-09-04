@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1> {{ blog.title }} </h1>
+
+<h2> {{ blog.description }} </h2>
+{% if not blog.post_set.exists and user.blog == blog %}
+    <p> You do not have any post.
+        <a href="{% url 'post_create' %}">Why don't you write one?</a>
+    </p>
+{% endif %}
+
+{% load blog_extras %} 
+{% for post in blog.post_set.all %}
+    {% show_post post %}
+{% endfor %}
+
+{% endblock %}
+

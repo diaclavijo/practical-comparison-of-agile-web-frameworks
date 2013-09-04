@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!--
+This code is repeated partially in list posts in front page and in lists posts of a blog, consider refactoring
+-->
+    {% load blog_extras %} 
+
+    {% show_post post %}
+
+    <p> You can leave a comment</p>
+    <form method="post" action="{% url 'post' post.blog.user post.slug %}" >
+        {% csrf_token %}
+
+        {{ form.as_p }}                    
+        
+        <input type="submit" value="Create a comment" />
+    </form>
+    <h3> Comments </h3>
+    {% for comment in post.comment_set.all %}
+        {% if comment.reg_user %}
+            <h4> {{ comment.reg_user.username }} </h4>
+            <h4> {{ comment.reg_user.userprofile.website }} </h4>
+            <h4> {{ comment.reg_user.email }} </h4
+        {% else %}
+            <h4> {{ comment.user }} </h4>
+            <h4> {{ comment.website }} </h4>
+            <h4> {{ comment.email }} </h4>
+        {% endif %}
+        <p> {{ comment.body }} </p>
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'comment_delete' post.blog.user post.slug comment.id %}" >
+                {% csrf_token %}
+                <input type="submit" value="Delete Comment" > 
+            </form>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+

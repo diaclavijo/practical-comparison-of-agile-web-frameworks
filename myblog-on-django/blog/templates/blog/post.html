@@ -1,0 +1,19 @@
+<h3><a href="{% url 'post' post.blog.user post.slug %}"> {{ post.title }} </a></h3>
+<h4>Posted on {{ post.created_at }} </h4>
+<h4>Created by {{ post.blog.user }}
+    {% if post.blog.user.userprofile.avatar %}
+        <img src="/media/{{ post.blog.user.userprofile.avatar }}" style="width: 100px; height: 100px"/>
+    {% endif %}
+</h4>
+<p> {{ post.body }} </p>
+<small> {{ post.comment_set.count }}# comments</small>
+{% if user == post.blog.user %}
+    <form method="post" action="{% url 'post_delete' post.blog.user post.slug %}" >
+            {% csrf_token %}
+            <input type="submit" value="Delete Post" > 
+    </form>
+    <form method="get" action="{% url 'post_update' post.blog.user post.slug %}" >
+            {% csrf_token %}
+            <input type="submit" value="Update Post" > 
+    </form>
+{% endif %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block secondbar %}
+    <div id="secondbar">
+        <p>Second bar:</p>
+         <ul>
+            <li><a href="{% url 'settings' %}">Main settings</a></li>
+            <li><a href="{% url 'user_pass_change' %}">Password change</a></li>
+            {% if user.blog %}
+                <li><a href="{% url 'blog_update' %}">Update Blog</a></li>
+            {% endif %}
+        </ul>
+
+    </div>
+
+{% endblock %}
+
