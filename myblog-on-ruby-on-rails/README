@@ -1,4 +1,12 @@
+Myblog on Rails execution instructions
+
+Requirements :
+
+   It was develop with Rails 3.2.13 and ruby 1.8.7 
+
+
 To start the application server on localhost type the same as in every rails app:
 
 rails server
 
+Myblog app is running and can be visited in the address specified in the output.

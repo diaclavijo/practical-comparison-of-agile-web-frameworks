@@ -1,3 +1,9 @@
+Myblog on Grails execution instructions
+
+Requirements :
+
+   It was develop with grails-2.2.2 and groovy-2.1.3
+
 Install Grails. You can follow official instruction here:
 
 http://grails.org/installation
@@ -6,4 +12,4 @@ Afterwards, inside this directory, execute:
 
 grails run-app
 
-Myblog is running and can be visited in the address specified in the output.
+Myblog app is running and can be visited in the address specified in the output.

@@ -1,7 +1,26 @@
-Myblog on CodeIgniter execution instructions
+Myblog on CodeIgniter execution instructions.
 
-Install Apache + Modules for execute PHP
+Myblog on Codeigniter uses MYSQL therefore the database must be build.
 
-Copy this folder to the apache directory.
+1) Build database:
+
+Once MYSQL is installed.
+
+By default this configuration for the database is used:
+
+$db['default']['hostname'] = "localhost";
+$db['default']['username'] = "root";
+$db['default']['password'] = '123456';
+$db['default']['database'] = 'myblog';
+$db['default']['dbdriver'] = 'mysql';
+
+Configuration can be changed in the CodeIgniter file application/config/database.php
+
+The database schema is in the myblog.sql file in the root directory of the app.
+This database has some example data.
+
+2) Install Apache + Modules for execute PHP
+
+3) Copy this folder to the apache directory.
 
 Visit locahost
