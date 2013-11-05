@@ -26,7 +26,7 @@
 			 . Published on ${post.dateCreated }</h3>
 			
 			<g:if test="${post.blog.user == com.myblog.AuthUtils.currentUser() }">
-				<<g:form>
+				<g:form>
 					<fieldset class="buttons">
 						<g:hiddenField name="id" value="${post.id}" />
 						<g:link class="edit" controller="post" action="edit" id="${post?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
